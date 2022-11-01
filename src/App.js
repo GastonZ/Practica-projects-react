@@ -1,77 +1,57 @@
 import './index.css'
 import NombreFoto from './components/NombreFoto'
-import CampoConArray from './components/CampoConArray'
-import Flechita from './components/Flechita'
-import data from './data/datosMentores'
-import { useState } from 'react' //desestructurando react para traer unicamente useState
-import React from 'react'
+import NextAndPrev from './components/NextAndPrev'
+import Descripcion from './components/Descripcion'
+import data from './data/events1'
+import { useState } from 'react'
+
 
 function App() {
 
-  let [mostrarOcultar,setMostrarOcultar] = useState(false)
-  //modificamos estados para modificar el DOM sin necesidad de recargar la pagina
-  //primer elemento: la variable que se quiere cambiar
-  //segundo elemento: la funcion que va a modificar esa variable
-  //y adentro del paréntesis el estado inicial de esa variable
-    //mostrarOcultar es un booleano que va a mostrar/ocultar elementos del DOM
-    //setMostrarOcutarl es una función que cambia el valor del booleano (de true a false y al reves)
-    //false es el estado inicial
+  let [mostrarOcultar, setMostrarOcultar] = useState(false)
 
+  let [numeroACambiar, setNumeroACambiar] = useState(0)
 
-  let [numeroAcambiar,setNumeroAcambiar] = useState(0)
-  //el hook de estado está compuesto por dos elementos
-    //primer elemento es la variable que tiene que cambiar
-    //segundo elemento es la función que va a modificar/setear esa variable
-    //es necesario PRE-DEFINIR con que valor INICIA el estado (adentro del parentesis del hook de estado)
-    
-    let hide = () => {
-      setMostrarOcultar(!mostrarOcultar)
-      console.log(mostrarOcultar)
-    }
+  let hide = () => {
+    console.log(mostrarOcultar)
+    setMostrarOcultar(!mostrarOcultar)
+  }
 
-    let next = () => {
-    if (numeroAcambiar<data.length-1) {
-      setNumeroAcambiar(++numeroAcambiar)
+  let next = () => {
+    console.log('titties');
+    if (numeroACambiar < data.length-1){
+      setNumeroACambiar(++numeroACambiar)
     } else {
-      setNumeroAcambiar(0)
+      setNumeroACambiar(0)
     }
-    console.log(numeroAcambiar)
+
   }
   let prev = () => {
-    if (numeroAcambiar>0) {
-      setNumeroAcambiar(--numeroAcambiar)
+    console.log('titties');
+    if (numeroACambiar > 0){
+      setNumeroACambiar(--numeroACambiar)
     } else {
-      setNumeroAcambiar(data.length-1)
+      setNumeroACambiar(data.length-1)
     }
-    console.log(numeroAcambiar)
+    
   }
 
   return (
-    <div className='card black'>
-      <NombreFoto nombre={data[numeroAcambiar].nombre} foto={data[numeroAcambiar].foto} />
-      {/* vamos a armar un condicional que dependa del booleano del evento */}
+    <div className="card-data">
+      <NombreFoto category={data[numeroACambiar].category}  image={data[numeroACambiar].image} />
       {
         mostrarOcultar ?
-          (<>
-            <p className='gray flex j-center a-center' onClick={hide}>ocultar info</p>
-            <div className='edad-fecha'>
-              <p className='datos white r25 edad'>Edad: {data[numeroAcambiar].edad} años</p>
-              <p className='datos white l25 fecha'>Fecha: {data[numeroAcambiar].nacimiento}</p>
-            </div>
-            <div className='datos white flex a-center'>
-              <p>Mail: {data[numeroAcambiar].mail}</p>
-            </div>
-            <CampoConArray titulo='Hobbies' datos={data[numeroAcambiar].hobbies.join(' y ')} />
-            <CampoConArray titulo='Comidas' datos={data[numeroAcambiar].comidas.join(' y ')} />
-          </>) :
-          (<p className='gray flex j-center a-center' onClick={hide}>mostrar info</p>)
+        (<>
+        <p className="m-10 bg-dark transition-ease " onClick={hide}> Ocultar descripcion </p>
+        <Descripcion descripcion={data[numeroACambiar].description} />
+        </>) : 
+        (<p className="m-10 bg-dark" onClick={hide}> Mostrar descripcion </p>)
       }
-      <div className='flex j-center a-center'>
-        <Flechita verbo='anterior' estilo='r25' pepe={prev} />
-        <Flechita verbo='siguiente' estilo='l25' pepe={next} />
-        {/* los eventos en los componentes se pasan como propiedades/metodos NO COMO EVENTOS */}
-        {/* por eso es necesario desestructurlo adentro del componente */}
-        {/* y acplicarlo en la etiqueta HTML que corresponda */}
+
+      <div className="d-flex">
+        <NextAndPrev verbo='anterior' siguienteOAnterior={prev}/>
+        
+        <NextAndPrev verbo='siguiente' siguienteOAnterior={next}/>
       </div>
     </div>
   )

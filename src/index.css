@@ -14,85 +14,57 @@ code {
     monospace;
 }
 
-.flex {
-  display: flex;
-}
-
-.j-center {
-  justify-content: center;
-}
-
-.a-center {
-  align-items: center;
-}
-
-.white {
-  color: black;
-  background-color: white;
-}
-
-.black {
-  color: white;
-  background-color: black;
-}
-
-.gray {
-  color: black;
-  background-color: gray;
-}
-
-.gray:hover {
-  background-color: whitesmoke
-}
-
-.r25 {
-  margin-right: 2.5px;
-}
-
-.l25 {
-  margin-left: 2.5px;
-}
-
-.card {
-  width: 300px;
-  padding: 10px;
-  margin: 20px;
-}
-
-.titulo {
-  padding: 10px;
-}
-
-.photo {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.edad-fecha {
-  display: flex;
-}
-
-.edad {
-  width: 40%;
-}
-
-.fecha {
-  width: 60%;
-}
-
-.datos {
-  padding: 5px;
-  margin-top: 5px;
-}
-
-p {
-  font-size: 16px;
-}
-
-.flecha {
-  margin-top: 10px;
+.card-data {
+  height: 500px;
   width: 50%;
-  font-size: 20px;
-  font-weight: 600;
+  margin: 0 auto;
+  background: firebrick;
+}
+
+.card-data>div h2 {
+  text-align: center;
+}
+
+.card-data>div img {
+  height: 300px;
+  width: 100%;
+  object-fit: contain;
+}
+
+.d-flex{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.m-15 {
+  margin: 15px;
+}
+
+.m-10 {
+  margin: 10px;
+  padding: 5px;
   cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+
+.m-10:hover{
+  transform: translateY(-10px);
+}
+
+.bg-dark {
+  background-color: rgb(50, 50, 50);
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+}
+
+.description { 
+  text-align: center;
+  padding: 15px;
+  background: red;
+}
+
+.transition-ease {
+  transition: 500ms ease-in-out;
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 
 export default function NombreFoto(props) {
-  let {nombre,foto} = props
+  let {category, image} = props
   return (
-    <>
-        <h2 className='titulo white flex j-center a-center'>{nombre}</h2>
-        <img src={foto} alt='sujeto1' className='photo' />
-    </>
+    <div>
+        <h2>{category}</h2>
+        <img src={image} alt={category}></img>
+    </div>
   )
 }
